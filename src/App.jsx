@@ -4,16 +4,21 @@ import TodoList from './TodoList';
 import './App.css';
 
 function App() {
-  const [newTodo, setNewTodo] = useState('new todo text');
+  const [todoList, setTodoList] = useState([]);
+
+  function addTodo(title) {
+    const newTodo = { id: Date.now(), title };
+    setTodoList([...todoList, newTodo]);
+  }
 
   return (
     <div>
       <h1>My Todos</h1>
-      <TodoForm />
+      <TodoForm onAddTodo= {addTodo} />
 
-      <p>{newTodo}</p>
+      
 
-      <TodoList />
+      <TodoList todoList={todoList} />
     </div>
   );
 }
